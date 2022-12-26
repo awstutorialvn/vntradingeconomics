@@ -1,0 +1,43 @@
+name: Build Environments
+run-name: Build Environments Actions 🚀
+
+on:
+  workflow_call:
+    inputs:
+      stage:
+        required: true
+        type: string
+
+env:
+  STAGE_NAME: ${{ inputs.stage }}
+  STACK_NAME: ${{ secrets.STACK_NAME }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  CDK_DEFAULT_ACCOUNT: ${{ secrets.CDK_DEFAULT_ACCOUNT }}
+  CDK_DEFAULT_REGION: ${{ secrets.CDK_DEFAULT_REGION }}
+  REGION: ${{ secrets.REGION }}
+  S3_MAIN_PREFIX: ${{ secrets.S3_MAIN_PREFIX }}
+       
+jobs:
+  BuildTest:
+    name: Build And Test
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.stage }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.17.0
+
+      - name: Install Yarn
+        run: npm install yarn -g
+
+      - name: Install Dependencies
+        run: yarn install --force
+
+      - name: CDK synth
+        run: yarn run cdk synth
+  
