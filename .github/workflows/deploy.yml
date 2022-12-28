@@ -23,9 +23,9 @@ jobs:
     needs: [BuildTest]
     runs-on: ubuntu-latest
     outputs:
-      env: ${{ steps.discovery.outputs.env }}
+      env: ${{ steps.EnvDefinition.outputs.env }}
     steps:
-      - id: discovery
+      - id: EnvDefinition
         run: |
           if [ '${{ github.ref_name }}' == 'develop' ]; then
             env='development'
@@ -34,8 +34,8 @@ jobs:
 
   DeployDevelopment:
     name: Deploy Development
-    needs: discovery
-    if: needs.discovery.outputs.env == 'development'
+    needs: EnvDefinition
+    if: needs.EnvDefinition.outputs.env == 'development'
     uses: awstutorialvn/vntradingeconomics/.github/workflows/build-and-test.yml@develop
     with:
       stage: dev
