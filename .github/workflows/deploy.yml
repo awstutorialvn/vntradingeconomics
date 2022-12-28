@@ -1,0 +1,42 @@
+name: GitHub Actions Deploy
+run-name: ${{ github.actor }} ${{ github.repository }} Actions 🚀
+
+on:
+  pull_request:
+    types: [merged]
+    branches:
+      - develop
+      - master
+
+  push:
+    branches:
+      - develop
+      - master
+
+jobs:
+  BuildTest:
+    uses: ./.github/workflows/build-and-test.yml
+    secrets: inherit
+  
+  EnvDefinition:
+    name: Define Env
+    needs: [BuildTest]
+    runs-on: ubuntu-latest
+    outputs:
+      env: ${{ steps.discovery.outputs.env }}
+    steps:
+      - id: discovery
+        run: |
+          if [ '${{ github.ref_name }}' == 'develop' ]; then
+            env='development'
+          fi
+          echo "env=$env" >>$GITHUB_OUTPUT
+
+  DeployDevelopment:
+    name: Deploy Development
+    needs: discovery
+    if: needs.discovery.outputs.env == 'development'
+    uses: awstutorialvn/vntradingeconomics/.github/workflows/build-and-test.yml@develop
+    with:
+      stage: dev
+    secrets: inherit

@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { VntradingeconomicsStack } from '../lib/vntradingeconomics-stack';
+import { env } from '../env/cdk';
 
 const app = new cdk.App();
 new VntradingeconomicsStack(app, 'VntradingeconomicsStack', {
@@ -18,4 +19,7 @@ new VntradingeconomicsStack(app, 'VntradingeconomicsStack', {
   // env: { account: '123456789012', region: 'us-east-1' },
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+  env: { account: env.CDK_DEFAULT_ACCOUNT, region: env.CDK_DEFAULT_REGION },
+
+	stackName: env.isProd ? env.STACK_NAME : `${env.STAGE_NAME}-${env.STACK_NAME}`,
 });

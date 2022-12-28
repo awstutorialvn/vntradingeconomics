@@ -1,0 +1,29 @@
+name: GitHub Actions Pull Request
+run-name: ${{ github.actor }} ${{ github.repository }} Actions 🚀
+
+# on: [push]
+# jobs:
+#   BuildTest:
+#     uses: ./.github/workflows/build-and-test.yml
+#     with:
+#       stage: 'dev'
+#     secrets: inherit
+    
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - develop
+      - master
+
+jobs:
+  BuildTest:
+    uses: ./.github/workflows/build-and-test.yml
+    secrets: inherit
+  
+  JobStatus:
+    name: status
+    needs: [BuildTest]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo job status ${{ job.status }}

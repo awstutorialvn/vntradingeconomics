@@ -23,6 +23,7 @@
     "@typescript-eslint/parser": "^5.45.1",
     "@types/aws-lambda": "^8.10.106",
     "@types/lodash": "^4.14.191",
+    "@types/request-promise": "^4.1.48",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-config-prettier": "^8.5.0",
@@ -36,7 +37,11 @@
     "ts-jest": "^27.1.4",
     "ts-node": "^10.9.1",
     "fastest-validator-decorators": "^2.0.0",
-    "typescript": "~3.9.7"
+    "typescript": "~3.9.7",
+    "puppeteer": "^19.4.1",
+    "request": "2.88.2",
+    "request-promise": "^4.2.6",
+    "cheerio": "^1.0.0-rc.12"
   },
   "dependencies": {
     "aws-cdk": "^2.54.0",
