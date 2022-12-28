@@ -7,7 +7,6 @@ import { Runtime } from 'aws-cdk-lib/aws-lambda';
 
 // import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-go';
 
-
 import { env } from '../../env/cdk';
 import { ApplicationProps } from '../interfaces/application';
 
@@ -38,16 +37,11 @@ export class StorageStack extends NestedStack {
         props.baseResources.s3.s3Bucket.grantPut(presignedPutUrlFunction);
         const storage = api.root.getResource('storage') ?? api.root.addResource('storage');
         const presignedUrl = storage.getResource('presigned-url') ?? storage.addResource('presigned-url');
-        const presignedPutUrl =
-            presignedUrl.getResource('put-object') ?? presignedUrl.addResource('put-object');
+        const presignedPutUrl = presignedUrl.getResource('put-object') ?? presignedUrl.addResource('put-object');
 
         // 👇 integrate GET /health-check with healthCheckFunc
-        presignedPutUrl.addMethod(
-            'GET',
-            new apigateway.LambdaIntegration(presignedPutUrlFunction, { proxy: true }),
-            {
-                authorizer: apiGateway.cognitoAuthorizer,
-            },
-        );
+        presignedPutUrl.addMethod('GET', new apigateway.LambdaIntegration(presignedPutUrlFunction, { proxy: true }), {
+            authorizer: apiGateway.cognitoAuthorizer,
+        });
     }
 }

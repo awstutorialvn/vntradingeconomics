@@ -7,7 +7,6 @@ export const presignedPutUrlHandler: HandlerOptions<PresignedPutUrlEntity> = {
     params: PresignedPutUrlEntity,
     handler: async (event, context) => {
         try {
-            const user = event.user;
             const { keyName } = event.params;
             const presignedPutUrl = s3Client.getSignedUrl('putObject', {
                 Bucket: s3BucketName,
