@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { env } from 'env/cdk';
+import { env } from '../env/cdk';
 import { HealthCheck } from './functions/health-check';
 import { StorageStack } from './functions/storage';
 import { ApplicationProps, ApplicationResourcesProps, Configuration } from './interfaces/application';

@@ -5,6 +5,9 @@ import { NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 
+// import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-go';
+
+
 import { env } from '../../env/cdk';
 import { ApplicationProps } from '../interfaces/application';
 
@@ -23,7 +26,7 @@ export class StorageStack extends NestedStack {
             functionName: presignedPutUrlFunctionName,
             runtime: Runtime.NODEJS_16_X,
             handler: 'presignedPutUrlHandler',
-            entry: path.join(__dirname, `../../src/api/video/index.ts`),
+            entry: path.join(__dirname, `../../src/api/storage/index.ts`),
             bundling: {
                 minify: env.isProduction,
                 externalModules: [...dependency.coreExternalModules],
@@ -33,7 +36,8 @@ export class StorageStack extends NestedStack {
         });
 
         props.baseResources.s3.s3Bucket.grantPut(presignedPutUrlFunction);
-        const presignedUrl = api.root.getResource('presigned-url') ?? api.root.addResource('presigned-url');
+        const storage = api.root.getResource('storage') ?? api.root.addResource('storage');
+        const presignedUrl = storage.getResource('presigned-url') ?? storage.addResource('presigned-url');
         const presignedPutUrl =
             presignedUrl.getResource('put-object') ?? presignedUrl.addResource('put-object');
 
