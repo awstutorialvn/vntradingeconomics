@@ -1,5 +1,5 @@
-name: Build Environments
-run-name: Build Environments Actions 🚀
+name: CDK Deploy
+run-name: CDK Deploy Actions 🚀
 
 on:
   workflow_call:
@@ -17,12 +17,11 @@ env:
   CDK_DEFAULT_REGION: ${{ secrets.CDK_DEFAULT_REGION }}
   REGION: ${{ secrets.REGION }}
   S3_MAIN_PREFIX: ${{ secrets.S3_MAIN_PREFIX }}
-       
+
 jobs:
-  BuildTest:
-    name: Build And Test
+  Deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-    environment: ${{ inputs.stage }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -38,9 +37,8 @@ jobs:
       - name: Install Dependencies
         run: yarn install --force
 
-      - name: Test
-        run: yarn run test
+      - name: CDK Bootstrap
+        run: yarn run cdk bootstrap
 
-      - name: CDK Synth
-        run: yarn run cdk synth
-  
+      - name: CDK Deploy
+        run: yarn run cdk deploy --require-approval never
