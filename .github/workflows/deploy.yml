@@ -36,7 +36,7 @@ jobs:
     name: Deploy Development
     needs: EnvDefinition
     if: needs.EnvDefinition.outputs.env == 'development'
-    uses: awstutorialvn/vntradingeconomics/.github/workflows/build-and-test.yml@develop
+    uses: awstutorialvn/vntradingeconomics/.github/workflows/cdk-deploy.yml@develop
     with:
       stage: dev
     secrets: inherit
