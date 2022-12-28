@@ -5,11 +5,11 @@ on:
   workflow_call:
     inputs:
       stage:
-        required: true
+        required: false
         type: string
 
 env:
-  STAGE_NAME: ${{ inputs.stage }}
+  STAGE_NAME: dev
   STACK_NAME: ${{ secrets.STACK_NAME }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
