@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { env } from '../env/cdk';
+import { CrawlerStack } from './functions/crawler';
 import { HealthCheck } from './functions/health-check';
 import { StorageStack } from './functions/storage';
 import { ApplicationProps, ApplicationResourcesProps, Configuration } from './interfaces/application';
@@ -44,5 +45,6 @@ export class VntradingeconomicsStack extends cdk.Stack {
         // init Function Lambda
         new HealthCheck(this, 'healthCheck', applicationProps);
         new StorageStack(this, 'storageStack', applicationProps);
+        new CrawlerStack(this, 'crawlerStack', applicationProps);
     }
 }

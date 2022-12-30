@@ -196,6 +196,11 @@
     "@aws-amplify/core" "5.0.7"
     tslib "^1.8.0"
 
+"@aws-cdk/aws-lambda-go-alpha@^2.58.0-alpha.0":
+  version "2.58.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda-go-alpha/-/aws-lambda-go-alpha-2.58.0-alpha.0.tgz#5a288e27b995061765566e415c5504c26a587977"
+  integrity sha512-1MfV673nMEPxV8lxTXWtE0V6yQOMOdrUbyyyTC7Yq199CZ4q5Pq7p4eljJO66it3CH5/dV5StvaLY0cDkWXLZA==
+
 "@aws-crypto/crc32@2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@aws-crypto/crc32/-/crc32-2.0.0.tgz#4ad432a3c03ec3087c5540ff6e41e6565d2dc153"
