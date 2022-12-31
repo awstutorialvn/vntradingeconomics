@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { NestedStack } from 'aws-cdk-lib';
+import { Duration, NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 
@@ -32,6 +32,7 @@ export class StorageStack extends NestedStack {
             },
             environment: props.configuration.environment,
             layers: [dependency.coreLayer],
+            timeout: Duration.seconds(60),
         });
 
         props.baseResources.s3.s3Bucket.grantPut(presignedPutUrlFunction);
