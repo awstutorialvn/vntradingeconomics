@@ -44,6 +44,7 @@
     "cheerio": "^1.0.0-rc.12"
   },
   "dependencies": {
+    "@aws-cdk/aws-lambda-go-alpha": "^2.58.0-alpha.0",
     "aws-cdk": "^2.54.0",
     "aws-cdk-lib": "2.43.1",
     "constructs": "^10.0.0",
