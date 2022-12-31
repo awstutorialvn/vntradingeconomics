@@ -17,6 +17,7 @@ export class CrawlerStack extends NestedStack {
 
         const stockPriceCrawlerFunctionName = `${stackName}-stock-price-crawler`;
         const stockPriceCrawlerFunction = new GoFunction(this, stockPriceCrawlerFunctionName, {
+            functionName: stockPriceCrawlerFunctionName,
             entry: path.join(__dirname, `../../src/job/crawler/stock_price/main.go`),
             timeout: Duration.seconds(10),
             architecture: Architecture.ARM_64,
@@ -24,7 +25,8 @@ export class CrawlerStack extends NestedStack {
 
         const stockPriceCrawlerRuleName = `${stackName}-stock-price-crawler-rule`;
         const rule = new Rule(this, stockPriceCrawlerRuleName, {
-            schedule: Schedule.expression('cron(0 * * * * *)'),
+            ruleName: stockPriceCrawlerRuleName,
+            schedule: Schedule.expression('cron(0 18 ? * MON-FRI *)'),
         });
         rule.addTarget(new targets.LambdaFunction(stockPriceCrawlerFunction));
     }

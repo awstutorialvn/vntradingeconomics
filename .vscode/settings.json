@@ -2,5 +2,9 @@
     "cSpell.words": [
         "awstutorialvn",
         "vntradingeconomics"
-    ]
+    ],
+    "gopls": {
+        "experimentalWorkspaceModule": true,
+    }
 }
+
