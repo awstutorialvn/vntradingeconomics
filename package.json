@@ -13,7 +13,8 @@
     "lint": "eslint src/**/*.ts lib",
     "format": "eslint src/**/*.ts --fix",
     "prepare": "husky install",
-    "local": "sam-nightly local start-api --warm-containers lazy -t cdk.out/VideoLinkedStack.template.json"
+    "local": "sam-nightly local start-api --warm-containers lazy -t cdk.out/VideoLinkedStack.template.json",
+    "build:go": "cd ./src/schedule && go mod vendor && cd ../../"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
