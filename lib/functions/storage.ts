@@ -4,9 +4,6 @@ import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Duration, NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
-
-// import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-go';
-
 import { env } from '../../env/cdk';
 import { ApplicationProps } from '../interfaces/application';
 
