@@ -9,3 +9,6 @@ cdk.out
 
 # env
 .env
+
+# vendor
+/**/vendor
