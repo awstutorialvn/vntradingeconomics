@@ -56,3 +56,4 @@ jobs:
 
       - name: CDK Deploy Application
         run: yarn run cdk deploy VntradingeconomicsStack --exclusively --require-approval never
+        
