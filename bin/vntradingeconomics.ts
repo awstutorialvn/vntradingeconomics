@@ -1,25 +1,36 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { VntradingeconomicsStack } from '../lib/vntradingeconomics-stack';
 import { env } from '../env/cdk';
+import { VntradingeconomicsStack } from '../lib/vntradingeconomics-stack';
+import { VntradingeconomicsVPCStack } from '../lib/vntradingeconomics-vpc-stack';
+import { VntradingeconomicsRDSStack } from '../lib/vntradingeconomics-rds-stack';
 
 const app = new cdk.App();
-new VntradingeconomicsStack(app, 'VntradingeconomicsStack', {
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
+const vpcStack = new VntradingeconomicsVPCStack(app, 'VntradingeconomicsVPCStack', {
+  env: { account: env.CDK_DEFAULT_ACCOUNT, region: env.CDK_DEFAULT_REGION },
+  stackName: env.isProd ? `${env.STACK_NAME}-vpc` : `${env.STAGE_NAME}-${env.STACK_NAME}-vpc`,
+  tags: {
+    applicationName: env.isProd ? env.STACK_NAME : `${env.STAGE_NAME}-${env.STACK_NAME}`,
+  },
+});
 
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+const rdsStack = new VntradingeconomicsRDSStack(app, 'VntradingeconomicsRDSStack', {
+  env: { account: env.CDK_DEFAULT_ACCOUNT, region: env.CDK_DEFAULT_REGION },
+  stackName: env.isProd ? `${env.STACK_NAME}-rds` : `${env.STAGE_NAME}-${env.STACK_NAME}-rds`,
+  tags: {
+    applicationName: env.isProd ? env.STACK_NAME : `${env.STAGE_NAME}-${env.STACK_NAME}`,
+  },
+});
 
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
-
+const appStack = new VntradingeconomicsStack(app, 'VntradingeconomicsStack', {
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
   env: { account: env.CDK_DEFAULT_ACCOUNT, region: env.CDK_DEFAULT_REGION },
-
-	stackName: env.isProd ? env.STACK_NAME : `${env.STAGE_NAME}-${env.STACK_NAME}`,
+  stackName: env.isProd ? env.STACK_NAME : `${env.STAGE_NAME}-${env.STACK_NAME}`,
+  tags: {
+    applicationName: env.isProd ? env.STACK_NAME : `${env.STAGE_NAME}-${env.STACK_NAME}`,
+  },
 });
+
+rdsStack.addDependency(vpcStack);
+appStack.addDependency(rdsStack);

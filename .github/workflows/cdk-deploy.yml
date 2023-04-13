@@ -48,5 +48,12 @@ jobs:
       - name: CDK Bootstrap
         run: yarn run cdk bootstrap
 
-      - name: CDK Deploy
-        run: yarn run cdk deploy --require-approval never
+      - name: CDK Deploy VPC Init
+        run: yarn run cdk deploy VntradingeconomicsVPCStack --exclusively --require-approval never
+
+      - name: CDK Deploy RDS
+        run: yarn run cdk deploy VntradingeconomicsRDSStack --exclusively --require-approval never
+
+      - name: CDK Deploy Application
+        run: yarn run cdk deploy VntradingeconomicsStack --exclusively --require-approval never
+        

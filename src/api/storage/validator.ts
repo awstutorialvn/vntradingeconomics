@@ -3,6 +3,6 @@ import { Schema, String } from 'fastest-validator-decorators';
 
 @Schema()
 export class PresignedPutUrlEntity {
-    @String()
-    keyName!: string;
+  @String()
+  keyName!: string;
 }
