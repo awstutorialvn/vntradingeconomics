@@ -1,9 +1,7 @@
 import path from 'path';
-import { NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Code, LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda';
 
-import { NestedResourcesProps } from '../../interfaces/application';
 import corePackage from '../../../src/dependencies/core/nodejs/package.json';
 import { DependencyResourceProps } from '../../interfaces/base';
 

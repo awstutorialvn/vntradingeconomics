@@ -1,12 +1,12 @@
 import * as path from 'path';
 import * as targets from 'aws-cdk-lib/aws-events-targets';
 
-import { Duration, NestedStack } from 'aws-cdk-lib';
+import { Duration } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Architecture } from 'aws-cdk-lib/aws-lambda';
 import { GoFunction } from '@aws-cdk/aws-lambda-go-alpha';
 
-import { ApplicationProps, ScheduleStackProps } from '../interfaces/application';
+import { ScheduleStackProps } from '../interfaces/application';
 import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
 

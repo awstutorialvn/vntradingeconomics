@@ -7,10 +7,6 @@ export interface Configuration {
   environment: { [key: string]: string };
 }
 
-export interface NestedResourcesProps extends cdk.NestedStackProps {
-  configuration: Configuration;
-}
-
 export interface ApplicationResourcesProps {
   baseResources: BaseResources;
   configuration: Configuration;

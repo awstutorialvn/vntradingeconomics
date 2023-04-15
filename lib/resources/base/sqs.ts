@@ -1,7 +1,6 @@
 import { CfnQueue, Queue } from 'aws-cdk-lib/aws-sqs';
-import { Duration, NestedStack } from 'aws-cdk-lib';
+import { Duration } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { NestedResourcesProps } from '../../interfaces/application';
 import { SQSResourceProps } from '../../interfaces/base';
 
 export class SQSResource extends Construct {
