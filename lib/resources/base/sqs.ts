@@ -2,12 +2,13 @@ import { CfnQueue, Queue } from 'aws-cdk-lib/aws-sqs';
 import { Duration, NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { NestedResourcesProps } from '../../interfaces/application';
+import { SQSResourceProps } from '../../interfaces/base';
 
-export class SQSResource extends NestedStack {
+export class SQSResource extends Construct {
   public stockPriceCrawler: Queue;
 
-  public constructor(scope: Construct, id: string, props: NestedResourcesProps) {
-    super(scope, id, props);
+  public constructor(scope: Construct, id: string, props: SQSResourceProps) {
+    super(scope, id);
 
     const stackName = props.configuration.stackName;
     const stockPriceCrawlerQueueName = `${stackName}-stock-price-crawler.fifo`;

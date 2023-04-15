@@ -7,15 +7,15 @@ import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 
 import { env } from '../../../env/cdk';
-import { ApplicationResourcesProps } from '../../interfaces/application';
+import { ApplicationResourcesProps, CognitoResourceProps } from '../../interfaces/application';
 
-export class CognitoResource extends NestedStack {
+export class CognitoResource extends Construct {
   public userPool: UserPool;
 
   public userPoolClient: UserPoolClient;
 
-  public constructor(scope: Construct, id: string, props: ApplicationResourcesProps) {
-    super(scope, id, props);
+  public constructor(scope: Construct, id: string, props: CognitoResourceProps) {
+    super(scope, id);
 
     const stackName = props.configuration.stackName;
     const removalPolicy = props.configuration.removalPolicy;

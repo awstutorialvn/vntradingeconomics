@@ -11,13 +11,31 @@ export interface NestedResourcesProps extends cdk.NestedStackProps {
   configuration: Configuration;
 }
 
-export interface ApplicationResourcesProps extends NestedResourcesProps {
+export interface ApplicationResourcesProps {
   baseResources: BaseResources;
+  configuration: Configuration;
 }
+
+export interface ApiGatewayResourceProps extends ApplicationResourcesProps {
+
+}
+
+export interface CognitoResourceProps extends ApplicationResourcesProps {
+
+}
+
 
 export interface ApplicationProps extends ApplicationResourcesProps {
   appResources: AppResources;
 }
+
+export interface HealthCheckProps extends ApplicationProps {
+
+}
+
+export interface StorageStackProps extends ApplicationProps {}
+
+export interface ScheduleStackProps extends ApplicationProps {}
 
 // TODO
 // export interface FunctionProps {

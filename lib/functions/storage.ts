@@ -5,11 +5,11 @@ import { Duration, NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { env } from '../../env/cdk';
-import { ApplicationProps } from '../interfaces/application';
+import { StorageStackProps } from '../interfaces/application';
 
-export class StorageStack extends NestedStack {
-  public constructor(scope: Construct, id: string, props: ApplicationProps) {
-    super(scope, id, props);
+export class StorageStack extends Construct {
+  public constructor(scope: Construct, id: string, props: StorageStackProps) {
+    super(scope, id);
 
     const appResources = props.appResources;
     const apiGateway = appResources.apiGateway;

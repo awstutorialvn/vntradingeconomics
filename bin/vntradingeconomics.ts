@@ -32,5 +32,5 @@ const appStack = new VntradingeconomicsStack(app, 'VntradingeconomicsStack', {
   },
 });
 
-rdsStack.addDependency(vpcStack);
-appStack.addDependency(rdsStack);
+// rdsStack.addDependency(vpcStack);
+// appStack.addDependency(rdsStack);
