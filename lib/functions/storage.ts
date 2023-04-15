@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Duration, NestedStack } from 'aws-cdk-lib';
+import { Duration } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { env } from '../../env/cdk';

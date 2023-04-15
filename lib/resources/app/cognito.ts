@@ -1,13 +1,12 @@
 import * as cdk from 'aws-cdk-lib';
 import * as path from 'path';
-import { NestedStack } from 'aws-cdk-lib';
 import { AccountRecovery, UserPool, UserPoolClient, UserPoolClientIdentityProvider } from 'aws-cdk-lib/aws-cognito';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 
 import { env } from '../../../env/cdk';
-import { ApplicationResourcesProps, CognitoResourceProps } from '../../interfaces/application';
+import { CognitoResourceProps } from '../../interfaces/application';
 
 export class CognitoResource extends Construct {
   public userPool: UserPool;

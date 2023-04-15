@@ -12,3 +12,6 @@ cdk.out
 
 # vendor
 /**/vendor
+
+# cdk context
+cdk.context.json

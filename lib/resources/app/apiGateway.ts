@@ -1,12 +1,11 @@
 import * as cdk from 'aws-cdk-lib';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
-import { NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { AuthorizationType, CfnAuthorizer } from 'aws-cdk-lib/aws-apigateway';
 
 import { env } from '../../../env/cdk';
 import { CognitoResource } from './cognito';
-import { ApiGatewayResourceProps, ApplicationResourcesProps } from '../../interfaces/application';
+import { ApiGatewayResourceProps } from '../../interfaces/application';
 
 export class ApiGatewayResource extends Construct {
   private cognito: CognitoResource;

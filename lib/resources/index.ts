@@ -1,6 +1,5 @@
-import { NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { ApplicationResourcesProps, NestedResourcesProps } from '../interfaces/application';
+import { ApplicationResourcesProps } from '../interfaces/application';
 import { ApiGatewayResource } from './app/apiGateway';
 import { DependencyResource } from './base/dependency';
 import { DynamoDBResource } from './base/dynamoDB';

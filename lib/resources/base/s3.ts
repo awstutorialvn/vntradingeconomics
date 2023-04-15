@@ -1,8 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Bucket, ObjectOwnership, BucketEncryption } from 'aws-cdk-lib/aws-s3';
-import { NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { NestedResourcesProps } from '../../interfaces/application';
 import { S3ResourceProps } from '../../interfaces/base';
 
 export class S3Resource extends Construct {
