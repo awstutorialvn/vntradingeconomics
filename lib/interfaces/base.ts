@@ -1,21 +1,13 @@
-import { Configuration } from "./application";
+import { Configuration } from './application';
 
 export interface BaseResourcesProps {
-  configuration: Configuration
+  configuration: Configuration;
 }
 
-export interface DynamoDBResourceProps extends BaseResourcesProps {
-  
-}
+export type DynamoDBResourceProps = BaseResourcesProps;
 
-export interface S3ResourceProps extends BaseResourcesProps {
-  
-}
+export type S3ResourceProps = BaseResourcesProps;
 
-export interface DependencyResourceProps extends BaseResourcesProps {
-  
-}
+export type DependencyResourceProps = BaseResourcesProps;
 
-export interface SQSResourceProps extends BaseResourcesProps {
-  
-}
+export type SQSResourceProps = BaseResourcesProps;

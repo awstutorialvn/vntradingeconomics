@@ -16,26 +16,19 @@ export interface ApplicationResourcesProps {
   configuration: Configuration;
 }
 
-export interface ApiGatewayResourceProps extends ApplicationResourcesProps {
+export type ApiGatewayResourceProps = ApplicationResourcesProps;
 
-}
-
-export interface CognitoResourceProps extends ApplicationResourcesProps {
-
-}
-
+export type CognitoResourceProps = ApplicationResourcesProps;
 
 export interface ApplicationProps extends ApplicationResourcesProps {
   appResources: AppResources;
 }
 
-export interface HealthCheckProps extends ApplicationProps {
+export type HealthCheckProps = ApplicationProps;
 
-}
+export type StorageStackProps = ApplicationProps;
 
-export interface StorageStackProps extends ApplicationProps {}
-
-export interface ScheduleStackProps extends ApplicationProps {}
+export type ScheduleStackProps = ApplicationProps;
 
 // TODO
 // export interface FunctionProps {

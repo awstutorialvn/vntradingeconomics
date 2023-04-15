@@ -22,7 +22,7 @@ const getConfiguration = (props: cdk.StackProps): Configuration => {
   };
 
   return configuration;
-}
+};
 
 export class VntradingeconomicsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: cdk.StackProps) {
