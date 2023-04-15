@@ -9,3 +9,9 @@ cdk.out
 
 # env
 .env
+
+# vendor
+/**/vendor
+
+# cdk context
+cdk.context.json

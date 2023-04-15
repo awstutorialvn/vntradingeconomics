@@ -2,22 +2,29 @@ import * as cdk from 'aws-cdk-lib';
 import { AppResources, BaseResources } from '../resources';
 
 export interface Configuration {
-    stackName: string;
-    removalPolicy: cdk.RemovalPolicy;
-    environment: { [key: string]: string };
+  stackName: string;
+  removalPolicy: cdk.RemovalPolicy;
+  environment: { [key: string]: string };
 }
 
-export interface NestedResourcesProps extends cdk.NestedStackProps {
-    configuration: Configuration;
+export interface ApplicationResourcesProps {
+  baseResources: BaseResources;
+  configuration: Configuration;
 }
 
-export interface ApplicationResourcesProps extends NestedResourcesProps {
-    baseResources: BaseResources;
-}
+export type ApiGatewayResourceProps = ApplicationResourcesProps;
+
+export type CognitoResourceProps = ApplicationResourcesProps;
 
 export interface ApplicationProps extends ApplicationResourcesProps {
-    appResources: AppResources;
+  appResources: AppResources;
 }
+
+export type HealthCheckProps = ApplicationProps;
+
+export type StorageStackProps = ApplicationProps;
+
+export type ScheduleStackProps = ApplicationProps;
 
 // TODO
 // export interface FunctionProps {

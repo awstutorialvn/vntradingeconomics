@@ -10,10 +10,11 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint src/**/*.ts lib",
-    "format": "eslint src/**/*.ts --fix",
+    "lint": "eslint bin/**/*.ts lib/**/*.ts env/**/*.ts --fix",
+    "format": "eslint src/**/*.ts bin/**/*.ts lib/**/*.ts --fix",
     "prepare": "husky install",
-    "local": "sam-nightly local start-api --warm-containers lazy -t cdk.out/VideoLinkedStack.template.json"
+    "local": "sam-nightly local start-api --warm-containers lazy -t cdk.out/VideoLinkedStack.template.json",
+    "build:go": "cd ./src/schedule && go mod vendor && cd ../../"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
@@ -41,13 +42,14 @@
     "puppeteer": "^19.4.1",
     "request": "2.88.2",
     "request-promise": "^4.2.6",
-    "cheerio": "^1.0.0-rc.12"
+    "cheerio": "^1.0.0-rc.12",
+    "esbuild": "^0.17.12"
   },
   "dependencies": {
-    "@aws-cdk/aws-lambda-go-alpha": "^2.58.0-alpha.0",
-    "aws-cdk": "^2.54.0",
-    "aws-cdk-lib": "2.43.1",
-    "constructs": "^10.0.0",
+    "@aws-cdk/aws-lambda-go-alpha": "2.64.0-alpha.0",
+    "aws-cdk": "2.64.0",
+    "aws-cdk-lib": "2.64.0",
+    "constructs": "10.1.246",
     "source-map-support": "^0.5.21",
     "lodash": "^4.17.21"
   },
