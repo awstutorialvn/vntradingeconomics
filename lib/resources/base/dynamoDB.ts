@@ -1,18 +1,17 @@
 import * as cdk from 'aws-cdk-lib';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
-import { NestedStack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { NestedResourcesProps } from '../../interfaces/application';
 
 import { env } from '../../../env/cdk';
+import { DynamoDBResourceProps } from '../..//interfaces/base';
 
-export class DynamoDBResource extends NestedStack {
+export class DynamoDBResource extends Construct {
   public tables: {
     User: dynamodb.Table;
   };
 
-  public constructor(scope: Construct, id: string, props: NestedResourcesProps) {
-    super(scope, id, props);
+  public constructor(scope: Construct, id: string, props: DynamoDBResourceProps) {
+    super(scope, id);
 
     const stackName = props.configuration.stackName;
     const billingMode = dynamodb.BillingMode.PAY_PER_REQUEST;

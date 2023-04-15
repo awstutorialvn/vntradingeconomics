@@ -5,14 +5,15 @@ import { Code, LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda';
 
 import { NestedResourcesProps } from '../../interfaces/application';
 import corePackage from '../../../src/dependencies/core/nodejs/package.json';
+import { DependencyResourceProps } from '../../interfaces/base';
 
-export class DependencyResource extends NestedStack {
+export class DependencyResource extends Construct {
   public coreLayer: LayerVersion;
 
   public coreExternalModules: string[];
 
-  public constructor(scope: Construct, id: string, props: NestedResourcesProps) {
-    super(scope, id, props);
+  public constructor(scope: Construct, id: string, props: DependencyResourceProps) {
+    super(scope, id);
 
     const stackName = props.configuration.stackName;
     const coreLayerName = `${stackName}-core-layer`;

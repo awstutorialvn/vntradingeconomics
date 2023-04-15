@@ -6,17 +6,17 @@ import { AuthorizationType, CfnAuthorizer } from 'aws-cdk-lib/aws-apigateway';
 
 import { env } from '../../../env/cdk';
 import { CognitoResource } from './cognito';
-import { ApplicationResourcesProps } from '../../interfaces/application';
+import { ApiGatewayResourceProps, ApplicationResourcesProps } from '../../interfaces/application';
 
-export class ApiGatewayResource extends NestedStack {
+export class ApiGatewayResource extends Construct {
   private cognito: CognitoResource;
 
   public api: apigateway.RestApi;
 
   public cognitoAuthorizer: { authorizerId: string; authorizationType: AuthorizationType };
 
-  public constructor(scope: Construct, id: string, props: ApplicationResourcesProps) {
-    super(scope, id, props);
+  public constructor(scope: Construct, id: string, props: ApiGatewayResourceProps) {
+    super(scope, id);
 
     const stackName = props.configuration.stackName;
     this.api = new apigateway.RestApi(this, `${stackName}-api`, {

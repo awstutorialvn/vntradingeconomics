@@ -6,13 +6,13 @@ import { Construct } from 'constructs';
 import { Architecture } from 'aws-cdk-lib/aws-lambda';
 import { GoFunction } from '@aws-cdk/aws-lambda-go-alpha';
 
-import { ApplicationProps } from '../interfaces/application';
+import { ApplicationProps, ScheduleStackProps } from '../interfaces/application';
 import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
 
-export class ScheduleStack extends NestedStack {
-  public constructor(scope: Construct, id: string, props: ApplicationProps) {
-    super(scope, id, props);
+export class ScheduleStack extends Construct {
+  public constructor(scope: Construct, id: string, props: ScheduleStackProps) {
+    super(scope, id);
 
     const stackName = props.configuration.stackName;
     const stockPriceCrawlerQueue = props.baseResources.sqs.stockPriceCrawler;

@@ -6,8 +6,9 @@ import { DependencyResource } from './base/dependency';
 import { DynamoDBResource } from './base/dynamoDB';
 import { S3Resource } from './base/s3';
 import { SQSResource } from './base/sqs';
+import { BaseResourcesProps } from '../interfaces/base';
 
-export class BaseResources extends NestedStack {
+export class BaseResources extends Construct {
   public s3: S3Resource;
 
   public sqs: SQSResource;
@@ -16,22 +17,24 @@ export class BaseResources extends NestedStack {
 
   public dependency: DependencyResource;
 
-  public constructor(scope: Construct, id: string, props: NestedResourcesProps) {
-    super(scope, id, props);
+  public constructor(scope: Construct, id: string, props: BaseResourcesProps) {
+    super(scope, id);
 
-    this.dynamoDB = new DynamoDBResource(this, 'DynamoDB', props);
-    this.s3 = new S3Resource(this, 'S3Bucket', props);
-    this.dependency = new DependencyResource(this, 'Dependency', props);
-    this.sqs = new SQSResource(this, 'SQS', props);
+    const { configuration } = props;
+
+    this.dynamoDB = new DynamoDBResource(this, 'DynamoDB', { configuration });
+    this.s3 = new S3Resource(this, 'S3Bucket', { configuration });
+    this.dependency = new DependencyResource(this, 'Dependency', { configuration });
+    this.sqs = new SQSResource(this, 'SQS', { configuration });
   }
 }
 
-export class AppResources extends NestedStack {
+export class AppResources extends Construct {
   public apiGateway: ApiGatewayResource;
 
   constructor(scope: Construct, id: string, props: ApplicationResourcesProps) {
-    super(scope, id, props);
+    super(scope, id);
 
-    this.apiGateway = new ApiGatewayResource(this, 'DynamoDB', props);
+    this.apiGateway = new ApiGatewayResource(this, 'ApiGateway', props);
   }
 }

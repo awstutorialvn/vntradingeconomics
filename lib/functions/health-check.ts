@@ -6,11 +6,11 @@ import { Construct } from 'constructs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 
 import { env } from '../../env/cdk';
-import { ApplicationProps } from '../interfaces/application';
+import { HealthCheckProps } from '../interfaces/application';
 
-export class HealthCheck extends NestedStack {
-  public constructor(scope: Construct, id: string, props: ApplicationProps) {
-    super(scope, id, props);
+export class HealthCheck extends Construct {
+  public constructor(scope: Construct, id: string, props: HealthCheckProps) {
+    super(scope, id);
 
     const appResources = props.appResources;
     const apiGateway = appResources.apiGateway;

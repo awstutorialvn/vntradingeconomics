@@ -8,22 +8,28 @@ import { ApplicationProps, ApplicationResourcesProps, Configuration } from './in
 import { AppResources, BaseResources } from './resources';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
+const getConfiguration = (props: cdk.StackProps): Configuration => {
+  const stackName = props.stackName ?? 'video-linked';
+  const configuration: Configuration = {
+    stackName: props.stackName ?? 'video-linked',
+    removalPolicy: env.isProd ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
+    environment: {
+      STACK_NAME: stackName,
+      NODE_ENV: env.NODE_ENV,
+      REGION: env.REGION,
+      S3_MAIN_PREFIX: env.S3_MAIN_PREFIX,
+    },
+  };
+
+  return configuration;
+};
+
 export class VntradingeconomicsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
 
     // The code that defines your stack goes here
-    const stackName = props.stackName ?? 'video-linked';
-    const configuration: Configuration = {
-      stackName: props.stackName ?? 'video-linked',
-      removalPolicy: env.isProd ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
-      environment: {
-        STACK_NAME: stackName,
-        NODE_ENV: env.NODE_ENV,
-        REGION: env.REGION,
-        S3_MAIN_PREFIX: env.S3_MAIN_PREFIX,
-      },
-    };
+    const configuration = getConfiguration(props);
 
     // init base resource
     const baseResources = new BaseResources(this, 'baseResources', { configuration });
