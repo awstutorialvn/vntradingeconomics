@@ -3,7 +3,7 @@ import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import { Construct } from 'constructs';
 
 import { env } from '../../../env/cdk';
-import { DynamoDBResourceProps } from '../..//interfaces/base';
+import { DynamoDBResourceProps } from '../../interfaces/base';
 
 export class DynamoDBResource extends Construct {
   public tables: {

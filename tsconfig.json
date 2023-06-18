@@ -3,6 +3,7 @@
     "baseUrl": "./",
     "target": "ES2018",
     "module": "commonjs",
+    "moduleResolution": "node",
     "lib": [
       "es2018",
       "dom"
@@ -17,18 +18,19 @@
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": false,
-    "inlineSourceMap": true,
-    "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
     "typeRoots": [
       "./node_modules/@types"
     ],
     "paths": {
-      "/opt/core/*": ["src/dependencies/core/nodejs/*"]
+      "*": ["./packages/*"]
     }
   },
   "exclude": [
@@ -38,6 +40,8 @@
   "include": [
     "lib",
     "bin",
-    "env"
+    "env",
+    "./packages/**/*",
+    "./packages/functions/**/*"
   ]
 }

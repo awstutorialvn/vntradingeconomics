@@ -14,8 +14,9 @@ export class ScheduleStack extends Construct {
   public constructor(scope: Construct, id: string, props: ScheduleStackProps) {
     super(scope, id);
 
-    const stackName = props.configuration.stackName;
-    const stockPriceCrawlerQueue = props.baseResources.sqs.stockPriceCrawler;
+    const { configuration, queues } = props;
+    const { stackName, environment } = configuration;
+    const { stockPriceQueue } = queues;
 
     const stockPriceScheduleFunctionName = `${stackName}-stock-price-schedule`;
     const stockPriceScheduleFunction = new GoFunction(this, stockPriceScheduleFunctionName, {
@@ -24,8 +25,8 @@ export class ScheduleStack extends Construct {
       timeout: Duration.seconds(600),
       architecture: Architecture.ARM_64,
       environment: {
-        ...props.configuration.environment,
-        STOCK_CRAWLER_QUEUE_NAME: stockPriceCrawlerQueue.queueName,
+        ...environment,
+        STOCK_PRICE_QUEUE_NAME: stockPriceQueue.queueName,
       },
     });
 
@@ -38,7 +39,7 @@ export class ScheduleStack extends Construct {
       environment: {
         ...props.configuration.environment,
       },
-      events: [new SqsEventSource(stockPriceCrawlerQueue)],
+      events: [new SqsEventSource(stockPriceQueue)],
     });
 
     const stockPriceScheduleRuleName = `${stackName}-stock-price-schedule-rule`;
@@ -49,7 +50,7 @@ export class ScheduleStack extends Construct {
     });
 
     rule.addTarget(new targets.LambdaFunction(stockPriceScheduleFunction));
-    props.baseResources.sqs.stockPriceCrawler.grantSendMessages(stockPriceScheduleFunction);
-    props.baseResources.sqs.stockPriceCrawler.grantConsumeMessages(stockPriceCrawlerFunction);
+    stockPriceQueue.grantSendMessages(stockPriceScheduleFunction);
+    stockPriceQueue.grantConsumeMessages(stockPriceCrawlerFunction);
   }
 }

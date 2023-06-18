@@ -1,0 +1,10 @@
+{
+	"name": "configurations",
+	"version": "1.0.0",
+	"author": "ductlv",
+	"private": true,
+	"dependencies": {
+		"dotenv": "16.3.1",
+		"envalid": "7.3.1"
+	}
+}
