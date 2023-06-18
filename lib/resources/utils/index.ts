@@ -1,11 +1,13 @@
 import * as cdk from 'aws-cdk-lib';
-import { Configuration } from '../../interfaces/application';
+import { Configuration } from '../../interfaces/resource';
 import { env } from '../../../env/cdk';
 
 export const getConfiguration = (props: cdk.StackProps): Configuration => {
-  const stackName = props.stackName ?? 'video-linked';
+  const stackName = props.stackName ?? 'vntradingeconomics';
   const configuration: Configuration = {
-    stackName: props.stackName ?? 'vntradingeconomics',
+    stackName: stackName,
+    stageName: props.tags?.stageName ?? env.STAGE_NAME,
+    resourceStackName: props.tags?.resourceStackName ?? env.RESOURCE_STACK_NAME,
     removalPolicy: env.isProd ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
     environment: {
       STACK_NAME: stackName,

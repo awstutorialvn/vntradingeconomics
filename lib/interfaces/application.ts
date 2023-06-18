@@ -5,6 +5,7 @@ import { Queue } from 'aws-cdk-lib/aws-sqs';
 
 export interface Configuration {
   stackName: string;
+  stageName: string;
   removalPolicy: cdk.RemovalPolicy;
   environment: { [key: string]: string };
 }

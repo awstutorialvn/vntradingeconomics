@@ -9,7 +9,10 @@ export class VPCResource extends Construct {
   public constructor(scope: Construct, id: string, props: ResourcesProps) {
     super(scope, id);
 
-    const stackName = props.configuration.stackName ?? 'vntradingeconomics';
+    const stageName = props.configuration.stageName;
+		const resourceStackName = props.configuration.resourceStackName;
+		const stackName = `${stageName}-${resourceStackName}`;
+
     const vpcName = `${stackName}-vpc`;
     this.vpc = new Vpc(this, vpcName, {
       ipAddresses: IpAddresses.cidr('192.168.0.0/16'),
