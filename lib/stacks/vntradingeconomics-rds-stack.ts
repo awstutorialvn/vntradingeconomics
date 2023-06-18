@@ -5,13 +5,18 @@ import { DatabaseInstance, DatabaseInstanceEngine, PostgresEngineVersion } from 
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
 import { env } from '../../env/cdk';
+import { getConfiguration } from '../resources/utils';
 
 export class VntradingeconomicsRDSStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
 
-    const stackName = props.stackName ?? 'vntradingeconomics';
-    const vpcName = `${props.tags?.applicationName ?? stackName}-resource-vpc`;
+    const configuration = getConfiguration(props);
+    const stageName = configuration.stageName;
+		const resourceStackName = configuration.resourceStackName;
+		const stackName = `${stageName}-${resourceStackName}`;
+    
+    const vpcName = `${stackName}-vpc`;
     const rdsVpc: IVpc = Vpc.fromLookup(this, vpcName, {
       vpcName: vpcName,
       // isDefault: true

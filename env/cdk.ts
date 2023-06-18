@@ -4,16 +4,17 @@ import { cleanEnv, str } from 'envalid';
 dotenv.config();
 
 export const env = cleanEnv(process.env, {
-  STACK_NAME: str({ default: 'vntradingeconomics' }),
+  RESOURCE_STACK_NAME: str({ default: 'vntradingeconomics' }),
+  STACK_NAME: str({ choices: ['ductlv', 'dev', 'prd', 'stg'], default: 'dev' }),
   NODE_ENV: str({
-    choices: ['local', 'development', 'production', 'staging'],
-    default: 'local',
+    choices: ['development', 'production', 'staging'],
+    default: 'development',
   }),
   CDK_DEFAULT_ACCOUNT: str({}),
   CDK_DEFAULT_REGION: str({}),
   STAGE_NAME: str({
-    choices: ['ductlv', 'dev', 'prd', 'stg'],
-    default: 'ductlv',
+    choices: ['dev', 'prd', 'stg'],
+    default: 'dev',
   }),
   REGION: str({}),
   S3_MAIN_PREFIX: str({}),
