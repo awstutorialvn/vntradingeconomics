@@ -108,7 +108,7 @@ func HandleRequest(ctx context.Context, event Event) (bool, error) {
 			LogLevel: aws.LogLevel(aws.LogDebugWithRequestErrors | aws.LogDebugWithRequestRetries),
 		},
 	}))
-	queueName := os.Getenv("STOCK_CRAWLER_QUEUE_NAME")
+	queueName := os.Getenv("STOCK_PRICE_QUEUE_NAME")
 	sqsClient := sqs.New(sess)
 
 	getQueueUrlOutput, err := sqsClient.GetQueueUrl(&sqs.GetQueueUrlInput{

@@ -1,5 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { AppResources, BaseResources } from '../resources';
+import { IBucket } from 'aws-cdk-lib/aws-s3';
+import { Queue } from 'aws-cdk-lib/aws-sqs';
 
 export interface Configuration {
   stackName: string;
@@ -24,23 +26,12 @@ export type HealthCheckProps = ApplicationProps;
 
 export type StorageStackProps = ApplicationProps;
 
-export type ScheduleStackProps = ApplicationProps;
+export interface ScheduleApplicationProps {
+  configuration: Configuration;
+  s3Bucket: IBucket;
+  queues: {
+    stockPriceQueue: Queue;
+  };
+}
 
-// TODO
-// export interface FunctionProps {
-//     name: string;
-//     handler: string;
-//     path: string;
-//     router: string;
-//     method: string;
-//     resourcePermissions: ((identity: IGrantable, objectsKeyPattern?: any) => Grant)[];
-//     runtime: Runtime;
-//     environment: {
-//         [key: string]: string;
-//     };
-//     bundling: {
-//         minify: boolean;
-//         externalModules: string[];
-//     };
-//     authorizerRequired: boolean;
-// }
+export type ScheduleStackProps = ScheduleApplicationProps;

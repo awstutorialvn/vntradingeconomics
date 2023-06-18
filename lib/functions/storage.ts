@@ -11,11 +11,11 @@ export class StorageStack extends Construct {
   public constructor(scope: Construct, id: string, props: StorageStackProps) {
     super(scope, id);
 
-    const appResources = props.appResources;
-    const apiGateway = appResources.apiGateway;
+    const { baseResources, appResources, configuration } = props;
+    const { s3, dependency } = baseResources;
+    const { apiGateway } = appResources;
+    const { environment, stackName } = configuration;
     const api = apiGateway.api;
-    const stackName = props.configuration.stackName;
-    const dependency = props.baseResources.dependency;
 
     const presignedPutUrlFunctionName = `${stackName}-presigned-put-url`;
     const presignedPutUrlFunction = new NodejsFunction(this, presignedPutUrlFunctionName, {
@@ -27,12 +27,13 @@ export class StorageStack extends Construct {
         minify: env.isProduction,
         externalModules: [...dependency.coreExternalModules],
       },
-      environment: props.configuration.environment,
+      environment: { ...environment, S3_BUCKET_NAME: s3.s3Bucket.bucketName },
       layers: [dependency.coreLayer],
       timeout: Duration.seconds(60),
     });
 
-    props.baseResources.s3.s3Bucket.grantPut(presignedPutUrlFunction);
+    s3.s3Bucket.grantPut(presignedPutUrlFunction);
+
     const storage = api.root.getResource('storage') ?? api.root.addResource('storage');
     const presignedUrl = storage.getResource('presigned-url') ?? storage.addResource('presigned-url');
     const presignedPutUrl = presignedUrl.getResource('put-object') ?? presignedUrl.addResource('put-object');

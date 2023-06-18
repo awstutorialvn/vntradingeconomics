@@ -11,3 +11,7 @@ export type S3ResourceProps = BaseResourcesProps;
 export type DependencyResourceProps = BaseResourcesProps;
 
 export type SQSResourceProps = BaseResourcesProps;
+
+export type CognitoResourceProps = BaseResourcesProps;
+
+export type VPCResourceProps = BaseResourcesProps;

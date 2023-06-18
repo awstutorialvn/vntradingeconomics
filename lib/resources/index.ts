@@ -24,7 +24,7 @@ export class BaseResources extends Construct {
     this.dynamoDB = new DynamoDBResource(this, 'DynamoDB', { configuration });
     this.s3 = new S3Resource(this, 'S3Bucket', { configuration });
     this.dependency = new DependencyResource(this, 'Dependency', { configuration });
-    this.sqs = new SQSResource(this, 'SQS', { configuration });
+    // this.sqs = new SQSResource(this, 'SQS', { configuration });
   }
 }
 
