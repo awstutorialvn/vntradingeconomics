@@ -9,11 +9,11 @@ export class VntradingeconomicsResourceStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
 
-    const configuration = getConfiguration(props); 
-		const resourceProps = { configuration };
+    const configuration = getConfiguration(props);
+    const resourceProps = { configuration };
 
-		const vcpResource = new VPCResource(this, 'VPCResource', resourceProps);
+    const vcpResource = new VPCResource(this, 'VPCResource', resourceProps);
     const s3Resource = new S3Resource(this, 'S3Resource', resourceProps);
-		const cognitoResource = new CognitoResource(this, 'CognitoResource', resourceProps);
-	}
-};
+    const cognitoResource = new CognitoResource(this, 'CognitoResource', resourceProps);
+  }
+}

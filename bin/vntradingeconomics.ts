@@ -32,8 +32,6 @@ const rdsStack = new VntradingeconomicsRDSStack(app, 'VntradingeconomicsRDSStack
   },
 });
 
-
-
 // const appStack = new VntradingeconomicsStack(app, 'VntradingeconomicsStack', {
 //   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 //   env: { account: env.CDK_DEFAULT_ACCOUNT, region: env.CDK_DEFAULT_REGION },
