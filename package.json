@@ -58,7 +58,7 @@
   "workspaces": {
     "packages": [
       "src/dependencies/core/nodejs",
-      "packages/functions/*",
+      "packages/layers/*",
       "packages/configurations"
     ],
     "nohoist": ["**"]

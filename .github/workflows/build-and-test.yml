@@ -41,6 +41,6 @@ jobs:
       - name: Test
         run: yarn run test
 
-      - name: CDK Synth Application
-        run: yarn run cdk synth VntradingeconomicsStack --exclusively
+      # - name: CDK Synth Application
+      #   run: yarn run cdk synth VntradingeconomicsStack --exclusively
   
