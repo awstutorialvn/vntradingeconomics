@@ -11,9 +11,9 @@ const app = new cdk.App();
 const stackName = env.isProd ? `${env.RESOURCE_STACK_NAME}` : `${env.STACK_NAME}-${env.RESOURCE_STACK_NAME}`;
 const envApp = { account: env.CDK_DEFAULT_ACCOUNT, region: env.CDK_DEFAULT_REGION };
 const tags = {
-	stackName,
-	stageName: env.STAGE_NAME,
-	resourceStackName: env.RESOURCE_STACK_NAME,
+  stackName,
+  stageName: env.STAGE_NAME,
+  resourceStackName: env.RESOURCE_STACK_NAME,
 };
 
 const resourceStack = new VntradingeconomicsResourceStack(app, 'VntradingeconomicsResourceStack', {

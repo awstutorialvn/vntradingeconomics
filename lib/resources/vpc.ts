@@ -10,8 +10,8 @@ export class VPCResource extends Construct {
     super(scope, id);
 
     const stageName = props.configuration.stageName;
-		const resourceStackName = props.configuration.resourceStackName;
-		const stackName = `${stageName}-${resourceStackName}`;
+    const resourceStackName = props.configuration.resourceStackName;
+    const stackName = `${stageName}-${resourceStackName}`;
 
     const vpcName = `${stackName}-vpc`;
     this.vpc = new Vpc(this, vpcName, {

@@ -13,7 +13,7 @@ export class CognitoResource extends Construct {
 
     const stageName = props.configuration.stageName;
 		const resourceStackName = props.configuration.resourceStackName;
-		const stackName = `${stageName}-${resourceStackName}`
+		const stackName = `${stageName}-${resourceStackName}`;
     const removalPolicy = props.configuration.removalPolicy;
 
     const userPoolName = `${stackName}-userPool`;
