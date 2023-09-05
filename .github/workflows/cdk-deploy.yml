@@ -40,11 +40,11 @@ jobs:
       - name: CDK Bootstrap
         run: yarn run cdk bootstrap
 
-      - name: CDK Deploy Resource
-        run: yarn run cdk deploy VntradingeconomicsResourceStack --exclusively --require-approval never
+      # - name: CDK Deploy Resource
+      #   run: yarn run cdk deploy VntradingeconomicsResourceStack --exclusively --require-approval never
 
-      - name: CDK Deploy RDS
-        run: yarn run cdk deploy VntradingeconomicsRDSStack --exclusively --require-approval never
+      # - name: CDK Deploy RDS
+      #   run: yarn run cdk deploy VntradingeconomicsRDSStack --exclusively --require-approval never
 
       # - name: Setup Golang
       #   uses: actions/setup-go@v3

@@ -13,9 +13,9 @@ export class VntradingeconomicsRDSStack extends cdk.Stack {
 
     const configuration = getConfiguration(props);
     const stageName = configuration.stageName;
-		const resourceStackName = configuration.resourceStackName;
-		const stackName = `${stageName}-${resourceStackName}`;
-    
+    const resourceStackName = configuration.resourceStackName;
+    const stackName = `${stageName}-${resourceStackName}`;
+
     const vpcName = `${stackName}-vpc`;
     const rdsVpc: IVpc = Vpc.fromLookup(this, vpcName, {
       vpcName: vpcName,

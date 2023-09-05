@@ -9,10 +9,10 @@ export class S3Resource extends Construct {
   public constructor(scope: Construct, id: string, props: ResourcesProps) {
     super(scope, id);
 
-		const stageName = props.configuration.stageName;
-		const resourceStackName = props.configuration.resourceStackName;
-		const stackName = `${stageName}-${resourceStackName}`;
-		
+    const stageName = props.configuration.stageName;
+    const resourceStackName = props.configuration.resourceStackName;
+    const stackName = `${stageName}-${resourceStackName}`;
+
     const bucketName = `${stackName}-storage`;
     const removalPolicy = props.configuration.removalPolicy;
 
